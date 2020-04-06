@@ -1,0 +1,29 @@
+---
+password_for_all: "" # will be used for all users below
+user_info:
+  groups:
+    - group_name: dev
+      group_scope: domainlocal
+    - group_name: qa
+      group_scope: domainlocal
+  users:
+    - user_name: james
+      firstname: James
+      surname: Jockey
+      password: "{{ password_for_all }}"
+      group: dev
+    - user_name: bill
+      firstname: Bill
+      surname: Gates
+      password: "{{ password_for_all }}"
+      group: dev
+    - user_name: mickey
+      firstname: Mickey
+      surname: Mouse
+      password: "{{ password_for_all }}"
+      group: qa
+    - user_name: donald
+      firstname: Donald
+      surname: Duck
+      password: "{{ password_for_all }}"
+      group: qa

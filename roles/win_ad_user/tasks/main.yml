@@ -1,0 +1,24 @@
+---
+- name: Sanity checks
+  assert:
+    that:
+    - user_info is defined
+
+- name: Create AD groups
+  win_domain_group:
+    name: "{{ item.group_name }}"
+    scope: "{{ item.group_scope }}"
+  loop: "{{ user_info.groups }}"
+  ignore_errors: true
+
+- name: Create AD users (no_log to prevent passwords being printed)
+  win_domain_user:
+    name: "{{ item.user_name }}"
+    firstname: "{{ item.firstname }}"
+    surname: "{{ item.surname }}"
+    password: "{{ item.password }}"
+    state: present
+    groups: "{{ item.group }}"
+  loop: "{{ user_info.users }}"
+  ignore_errors: true
+  no_log: true # prevent passwords from being printed

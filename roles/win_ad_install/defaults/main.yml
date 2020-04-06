@@ -1,0 +1,8 @@
+---
+win_ad_install_features:
+  - AD-Domain-Services
+win_ad_install_ad_domain_name: "" # FQDN ad1.mydomain.ca
+win_ad_install_ad_netbios_name: "" # Until first dot of FQDN
+win_ad_install_ad_admin_user: "admin@{{ win_ad_install_ad_domain_name }}"
+win_ad_install_ad_admin_password: "{{ ansible_password }}"
+win_ad_install_ad_safe_mode_password: "{{ ansible_password }}"

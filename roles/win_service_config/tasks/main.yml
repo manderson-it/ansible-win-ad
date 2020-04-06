@@ -1,0 +1,40 @@
+---
+- name: Sanity checks
+  assert:
+    that:
+    - package_name is defined
+    - parameters is defined
+    - service_name is defined
+    - local_port is defined
+    - protocol_name is defined
+    fail_msg: "One or more variables are undefined"
+    success_msg: "All required variables are defined"
+
+- name: Sanity check Win2k12 R2 Std
+  assert:
+    that:
+    - "'Microsoft Windows Server 2012 R2' in ansible_distribution"
+    fail_msg: "Wrong Windows version on target system"
+    success_msg: "Correct Windows version on target system"
+
+- name: Install {{ package_name }} on Windows
+  win_chocolatey:
+    name: "{{ package_name }}"
+    package_params: "{{ parameters }}"
+    state: present
+
+- name: Enable Windows service {{ service_name }}
+  win_service:
+    name: "{{ service_name }}"
+    start_mode: auto
+    state: started
+
+- name: Create Windows firewall rule
+  win_firewall_rule:
+    name: "{{ service_name }}"
+    localport: "{{ local_port }}"
+    action: allow
+    direction: in
+    protocol: "{{ protocol_name }}"
+    state: present
+    enabled: true

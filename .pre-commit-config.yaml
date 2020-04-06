@@ -1,0 +1,37 @@
+---
+# Requires yamllint to be pre-installed locally
+- repo: local
+  hooks:
+  # ansible-lint from:
+  # https://github.com/ansible/ansible-lint/blob/master/.pre-commit-hooks.yaml
+  - id: ansible-lint
+    name: Ansible-lint
+    description: This hook runs ansible-lint.
+    entry: ansible-lint --force-color **/*.yml
+    language: python
+    # do not pass files to ansible-lint, see:
+    # https://github.com/ansible/ansible-lint/issues/611
+    pass_filenames: false
+    always_run: true
+  - id: yamllint
+    name: yamllint
+    description: This hook runs yamllint.
+    entry: yamllint --config-file yamllint-config.yml --strict roles/
+    language: python
+    types: [file, yaml]
+
+# Pulls in yamllint
+#---
+#- repo: https://github.com/adrienverge/yamllint.git
+#  sha: v1.10.0
+#  hooks:
+#    - id: yamllint
+
+# With custom config and strict mode
+#---
+#repos:
+# - repo: https://github.com/adrienverge/yamllint.git
+#   sha: v1.10.0
+#   hooks:
+#     - id: yamllint
+#       args: ['--config-data {extends: relaxed, rules: {line-length: disable}}', '--strict']

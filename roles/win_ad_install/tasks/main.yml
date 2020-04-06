@@ -1,0 +1,50 @@
+---
+- name: Sanity Check
+  assert:
+    that:
+    - win_ad_install_ad_domain_name is defined
+    - win_ad_install_ad_domain_name | length >= 4
+    - win_ad_install_ad_netbios_name is defined
+    - win_ad_install_ad_domain_name | length >= 3
+    - win_ad_install_ad_admin_user is defined
+    - win_ad_install_ad_admin_password is defined
+    fail_msg: "Undefined variables or name too short"
+    success_msg: "All required variables are defined"
+
+- name: "Ensure local administrator account has a strong password [as required by AD]"
+  win_user:
+    name: Administrator
+    password: "{{ win_ad_install_ad_admin_password }}"
+    password_never_expires: true
+    state: present
+  register: r_user
+
+- name: Install AD Domain Services
+  win_feature:
+    name: "{{ win_ad_install_features }}"
+    include_management_tools: true
+    include_sub_features: true
+    state: present
+  register: r_domain_install
+
+- name: Create new Windows domain in a new forest with specific parameters
+  win_domain:
+    dns_domain_name: "{{ win_ad_install_ad_domain_name }}"
+    safe_mode_password: "{{ win_ad_install_ad_safe_mode_password }}"
+    domain_netbios_name: "{{ win_ad_install_ad_netbios_name }}"
+  register: r_domain_install
+
+- name: Reboot a slow machine that might have lots of updates to apply
+  win_reboot:
+    reboot_timeout: 3600
+    msg: "Server config in progress; rebooting..."
+  when: r_domain_install.reboot_required
+
+- name: Test domain availability after reboot
+  win_command: "nltest /dclist:{{ win_ad_install_ad_domain_name }}"
+  register: r_nltest
+
+- name: debug - r_nltest
+  debug:
+    var: r_nltest
+    #verbosity: 2

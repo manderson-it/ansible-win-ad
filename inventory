@@ -1,0 +1,9 @@
+[windows]
+# FQDN here or alias ansible_host=ip
+ad1 ansible_host=104.197.250.27
+
+[windows:vars]
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+ansible_become=false
+ansible_user=marek_anderson

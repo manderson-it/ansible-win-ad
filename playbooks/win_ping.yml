@@ -1,0 +1,8 @@
+---
+- name: win_ping windows machines
+  hosts: windows
+  gather_facts: false
+
+  tasks:
+  - name: win_ping
+    win_ping:
