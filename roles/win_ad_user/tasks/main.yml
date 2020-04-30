@@ -3,6 +3,10 @@
   assert:
     that:
     - user_info is defined
+    - password_for_all is defined
+    - password_for_all | length >= 8
+    fail_msg: "Undefined variables or password does not meet complexity requirements"
+    success_msg: "All required variables are defined"
 
 - name: Create AD groups
   win_domain_group:
