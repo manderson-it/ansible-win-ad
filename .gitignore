@@ -3,6 +3,8 @@
 .vscode/
 .vscode/settings.json
 
+creds/*
+
 # begin exclude MAC OS X files
 __MACOSX
 */.DS_Store
