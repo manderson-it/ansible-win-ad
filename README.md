@@ -22,6 +22,7 @@ mkdir python-virtual-environments && cd python-virtual-environments
 python3 -m venv ansible
 source ~/python-virtual-environment/ansible/bin/activate
 pip3 install ansible-lint ansible
+pip3 install "pywinrm>=0.2.2"
 ```
 
 Ensure your BASH is recent on MacOS, otherwise globstar does not work.
