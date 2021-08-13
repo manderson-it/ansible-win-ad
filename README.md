@@ -11,6 +11,19 @@ Microsoft Windows Server 2012 R2 Standard.
 
 ## Requirements on Ansible controller
 
+Ensure required packages are present.
+
+```shell
+# Ubuntu 20.04
+sudo apt update
+sudo apt install -Vy vim git screen wget telnet python3-pip
+sudo apt install -Vy python3.8-venv
+mkdir python-virtual-environments && cd python-virtual-environments
+python3 -m venv ansible
+source ~/python-virtual-environment/ansible/bin/activate
+pip3 install ansible-lint ansible
+```
+
 Ensure your BASH is recent on MacOS, otherwise globstar does not work.
 
 ```bash
