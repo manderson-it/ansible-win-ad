@@ -61,8 +61,8 @@ Make sure you meet the above requirements.
 Append `-u gcp_user_for_windows` to below `ansible-playbook` commands.
 
 ```bash
-ansible-playbook win_deploy_ad.yml
-ansible-playbook win_ad_users_groups.yml
-ansible-playbook win_ssh_server.yml
-ansible-playbook win_ping.yml
+ansible-playbook playbooks/win_deploy_ad.yml
+ansible-playbook playbooks/win_ad_users_groups.yml
+ansible-playbook playbooks/win_ssh_server.yml
+ansible-playbook playbooks/win_ping.yml
 ```
