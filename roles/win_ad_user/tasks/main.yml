@@ -21,6 +21,7 @@
     firstname: "{{ item.firstname }}"
     surname: "{{ item.surname }}"
     password: "{{ item.password }}"
+    email: "{{ item.email }}"
     state: present
     groups: "{{ item.group }}"
   loop: "{{ user_info.users }}"
