@@ -10,10 +10,10 @@
     fail_msg: "One or more variables are undefined"
     success_msg: "All required variables are defined"
 
-- name: Sanity check Win2k12 R2 Std
+- name: Sanity check Microsoft Windows Server 201x
   assert:
     that:
-    - "'Microsoft Windows Server 2012 R2' in ansible_distribution"
+    - "'Microsoft Windows Server 201' in ansible_distribution"
     fail_msg: "Wrong Windows version on target system"
     success_msg: "Correct Windows version on target system"
 
