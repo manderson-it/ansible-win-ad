@@ -42,20 +42,6 @@ Keep in mind, `pre-commit run` (with no additional arguments) **only runs** agai
 
 ## Run Playbooks
 
-MacOS has some Python bug, which results in the following output when
-calling an Ansible playbook with `win_ping`, for example.
-
-```bash
-[__NSPlaceholderDate initialize] may have been in progress in another thread when fork() was called
-```
-
-Export the following environment variable before running the playbook.
-
-```bash
-# Might be needed on MacOS due to a Python bug
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-```
-
 Playbooks are run against the Windows machine.
 Make sure you meet the above requirements.
 Append `-u gcp_user_for_windows` to below `ansible-playbook` commands.
@@ -65,4 +51,19 @@ ansible-playbook playbooks/win_deploy_ad.yml
 ansible-playbook playbooks/win_ad_users_groups.yml
 ansible-playbook playbooks/win_ssh_server.yml
 ansible-playbook playbooks/win_ping.yml
+```
+
+
+If you run Ansible from macOS: macOS has some Python bug, which results in the following output when
+calling an Ansible playbook with `win_ping`, for example.
+
+```bash
+[__NSPlaceholderDate initialize] may have been in progress in another thread when fork() was called
+```
+
+If you see this error on macOS, export the following environment variable before running the playbook.
+
+```bash
+# Might be needed on MacOS due to a Python bug
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 ```
