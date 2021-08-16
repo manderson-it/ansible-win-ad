@@ -11,19 +11,23 @@ user_info:
       firstname: James
       surname: Jockey
       password: "{{ password_for_all }}"
+      email: "james.jockey@manderson-it.ca"
       group: dev
     - user_name: bill
       firstname: Bill
       surname: Gates
       password: "{{ password_for_all }}"
+      email: "bill.gates@manderson-it.ca"
       group: dev
     - user_name: mickey
       firstname: Mickey
       surname: Mouse
       password: "{{ password_for_all }}"
+      email: "mickey.mouse@manderson-it.ca"
       group: qa
     - user_name: donald
       firstname: Donald
       surname: Duck
       password: "{{ password_for_all }}"
+      email: "donald.duck@manderson-it.ca"
       group: qa
