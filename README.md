@@ -8,6 +8,7 @@ Microsoft Windows Server 2012 R2 Standard.
 - VM with Windows Server 2012 R2 Standard
 - Proper DNS (important for AD)
 - Allow SSH for Ansible
+- Configure WinRM on Windows Server with https://github.com/ansible/ansible/blob/devel/examples/scripts/ConfigureRemotingForAnsible.ps1
 
 ## Requirements on Ansible controller
 
