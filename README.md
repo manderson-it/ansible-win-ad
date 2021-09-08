@@ -41,6 +41,18 @@ ln -s /usr/local/bin/bash /usr/local/bin/bash-terminal-app
 
 Keep in mind, `pre-commit run` (with no additional arguments) **only runs** against currently staged files.
 
+## Edit the inventory
+
+Fill the following vars that are required by the Ansible roles.
+
+```shell
+# fill these vars
+# example values below
+win_ad_install_ad_domain_name: "adfs2.manderson-it.ca" # FQDN ad1.mydomain.ca
+win_ad_install_ad_netbios_name: "adir" # Until first dot of FQDN
+password_for_all="" # used by role win_ad_user 
+```
+
 ## Run Playbooks
 
 Playbooks are run against the Windows machine.
