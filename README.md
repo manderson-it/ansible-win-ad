@@ -21,7 +21,7 @@ sudo apt install -Vy vim git screen wget telnet python3-pip
 sudo apt install -Vy python3.8-venv
 mkdir python-virtual-environments && cd python-virtual-environments
 python3 -m venv ansible
-source ~/python-virtual-environment/ansible/bin/activate
+source ~/python-virtual-environments/ansible/bin/activate
 pip3 install ansible-lint ansible
 pip3 install "pywinrm>=0.2.2"
 ```
